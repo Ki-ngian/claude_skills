@@ -94,6 +94,36 @@ Each result includes:
 - **Date** — publication date
 - **DOI** — digital object identifier (when available)
 
+## Presenting results to the user
+
+When compiling search results into a report:
+
+1. **Show the search query** — at the top of the results, state which query string was used (e.g. `"Sinorhizobium fredii" AND (membrane lipid OR lipid)`), so the user knows exactly what was searched and can reproduce or modify it.
+
+2. **Attach dual links** to every reference:
+   - `https://pubmed.ncbi.nlm.nih.gov/PMID` — PubMed abstract page
+   - `https://doi.org/DOI` — publisher full-text / PDF
+
+   This lets the user one-click access both the abstract and the download page. If a paper lacks a DOI (rare for older publications), omit the DOI link.
+
+3. **Link every PMID, everywhere — including the review body.** Any PMID that appears in
+   prose or a table is a markdown link, never a bare number:
+
+   ```markdown
+   **PMID: [35217001](https://pubmed.ncbi.nlm.nih.gov/35217001)** | Biochim Biophys Acta Biomembr, 2022
+   ```
+
+   This applies to the per-paper headings in the review section, the key-findings summary,
+   and the reference table alike. The only exception is an ASCII diagram inside a fenced
+   code block — links don't render there; keep bare PMIDs and point readers to the
+   reference table below it.
+
+4. **For a full literature report** (文献检索报告 / 文献综述), follow
+   `references/report-template.md`. It gives the section-by-section skeleton — header
+   block, 检索策略 table, 核心文献综述 grouped by theme, 研究脉络图, 关键发现总结
+   (直接证据 / 间接关联 / 研究空白), 参考文献 — plus the relevance-star legend and a
+   pre-delivery checklist. Read it before drafting rather than inventing a structure.
+
 ## Rate limits
 
 | Condition | Limit |
@@ -129,3 +159,5 @@ Staying within the rate limit is generally not a concern for interactive use.
 
 - `scripts/search_pubmed.py` — the search executable
 - `references/entrez-help.md` — NCBI Entrez query syntax reference
+- `references/report-template.md` — literature-report structure, PMID-linking rules,
+  relevance-star legend, pre-delivery checklist
